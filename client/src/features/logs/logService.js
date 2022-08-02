@@ -37,9 +37,7 @@ const getLogs = async (token) => {
     },
   };
 
-  const response = await axios.get(API_URL, {
-    Authorization: `Bearer ${token}`,
-  });
+  const response = await axios.get(API_URL, config);
 
   return response.data;
 };
