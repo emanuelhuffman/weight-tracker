@@ -33,11 +33,13 @@ const updateLog = async (logData, token) => {
 const getLogs = async (token) => {
   const config = {
     headers: {
-      Authorization: `JWT ${token}`,
+      Authorization: `Bearer ${token}`,
     },
   };
 
-  const response = await axios.get(API_URL, config);
+  const response = await axios.get(API_URL, {
+    Authorization: `Bearer ${token}`,
+  });
 
   return response.data;
 };
