@@ -21,11 +21,9 @@ function LogForm() {
   const dispatch = useDispatch();
 
   if (isEditing) {
-    if (exercises.length == 0) {
+    if (exercises.length === 0) {
       const foundLog = logs.filter((el) => el._id === curLogId)[0];
-      setDate(
-        foundLog.date.slice(0, foundLog.date.indexOf("T")).replaceAll("-", "/")
-      );
+      setDate(foundLog.date.slice(0, foundLog.date.indexOf("T")));
       setExercises(foundLog.exercises);
     }
   }
