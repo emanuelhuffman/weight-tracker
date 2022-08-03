@@ -15,6 +15,7 @@ function LogForm() {
   const [exercises, setExercises] = useState([]);
 
   const { name, weight, sets, reps } = exercise;
+
   const { isEditing, curLogId, logs } = useSelector((state) => state.logs);
 
   const dispatch = useDispatch();
