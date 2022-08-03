@@ -15,6 +15,19 @@ const createLog = async (logData, token) => {
   return response.data;
 };
 
+// get log
+const getLog = async (logId, token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  const response = await axios.get(API_URL + logId, config);
+
+  return response.data;
+};
+
 // Update log
 const updateLog = async (logData, token) => {
   const config = {
@@ -60,6 +73,7 @@ const logService = {
   getLogs,
   deleteLog,
   updateLog,
+  getLog,
 };
 
 export default logService;

@@ -5,10 +5,13 @@ const {
   setLog,
   updateLog,
   deleteLog,
+  getLog,
 } = require("../controllers/logController");
 const { protect } = require("../middleware/authMiddleware");
 
 router.get("/", protect, getLogs);
+
+router.get("/:id", protect, getLog);
 
 router.post("/", protect, setLog);
 

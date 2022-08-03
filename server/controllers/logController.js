@@ -27,6 +27,32 @@ const setLog = asyncHandler(async (req, res) => {
   res.status(200).json(log);
 });
 
+// @desc get log
+// @route get /api/logs/:id
+// @access Private
+const getLog = asyncHandler(async (req, res) => {
+  const log = await Log.findById(req.params.id);
+
+  if (!log) {
+    res.status(400);
+    throw new Error("Log does not exist");
+  }
+
+  //check for user
+  if (!req.user) {
+    res.status(401);
+    throw new Error("User not found");
+  }
+
+  //Make sure the logged in user matches the log user
+  if (log.user.toString() !== req.user.id) {
+    res.status(401);
+    throw new Error("User not authorized");
+  }
+
+  res.status(200).json(log);
+});
+
 // @desc Update log
 // @route POST /api/logs/:id
 // @access Private
@@ -90,4 +116,5 @@ module.exports = {
   setLog,
   updateLog,
   deleteLog,
+  getLog,
 };

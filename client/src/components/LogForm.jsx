@@ -15,9 +15,19 @@ function LogForm() {
   const [exercises, setExercises] = useState([]);
 
   const { name, weight, sets, reps } = exercise;
-  const { isEditing, curLogId } = useSelector((state) => state.logs);
+  const { isEditing, curLogId, logs } = useSelector((state) => state.logs);
 
   const dispatch = useDispatch();
+
+  if (isEditing) {
+    if (exercises.length == 0) {
+      const foundLog = logs.filter((el) => el._id === curLogId)[0];
+      setDate(
+        foundLog.date.slice(0, foundLog.date.indexOf("T")).replaceAll("-", "/")
+      );
+      setExercises(foundLog.exercises);
+    }
+  }
 
   const onSubmit = (e) => {
     e.preventDefault();
