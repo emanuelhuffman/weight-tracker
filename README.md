@@ -7,5 +7,5 @@
 -Password hashing with bcrypt  
 -Toastify for better UI/UX  
 -Custom Auth and error middlewear for route protection and security  
--Restful routing practices
+-Restful routing practices  
 -Postman for server side testing
