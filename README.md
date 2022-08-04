@@ -1,6 +1,6 @@
 # MERN Stack Workout Tracker Web App  
 -React with redux toolkit  
--Mongo with mongoose and mongodb atlas
+-Mongo with mongoose and mongodb atlas  
 -JWT authentication  
 -Axios to make calls to server  
 -React router  
