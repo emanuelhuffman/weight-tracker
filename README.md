@@ -2,7 +2,7 @@
 -React with redux toolkit  
 -Mongo with mongoose and mongodb atlas  
 -JWT authentication  
--Axios to make calls to server  
+-Axios to make server requests
 -React router  
 -Password hashing with bcrypt  
 -Toastify for better UI/UX  
