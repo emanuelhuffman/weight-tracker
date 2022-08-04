@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createLog, updateLog, setIsEditing } from "../features/logs/logSlice";
+import { updateLog, setIsEditing } from "../features/logs/logSlice";
 import todayDate from "../utils/dateFormat";
 
 function LogForm() {
@@ -13,15 +13,25 @@ function LogForm() {
   const [date, setDate] = useState(todayDate());
   const [exercise, setExercise] = useState(initialExercise);
   const [exercises, setExercises] = useState([]);
+  const [hasLoaded, setHasLoaded] = useState(false);
 
   const { name, weight, sets, reps } = exercise;
 
+  const { curLogId, logs } = useSelector((state) => state.logs);
+
   const dispatch = useDispatch();
+
+  const foundLog = logs.filter((el) => el._id === curLogId)[0];
+  if (exercises.length === 0 && !hasLoaded) {
+    setDate(foundLog.date.slice(0, foundLog.date.indexOf("T")));
+    setExercises(foundLog.exercises);
+    setHasLoaded(true);
+  }
 
   const onSubmit = (e) => {
     e.preventDefault();
 
-    dispatch(createLog({ date, exercises }));
+    dispatch(updateLog([curLogId, { date, exercises }]));
 
     setExercise(initialExercise);
     setExercises([]);
@@ -44,6 +54,10 @@ function LogForm() {
 
   const removeExercise = (index) => {
     setExercises((prevState) => prevState.filter((ex, i) => i !== index));
+  };
+
+  const onCancel = () => {
+    dispatch(setIsEditing(false));
   };
 
   return (
@@ -118,9 +132,19 @@ function LogForm() {
         </div>
 
         <div className="form-group">
-          <button className="btn btn-block" type="submit">
-            Add Log
-          </button>
+          <div className="edit-btns">
+            <button
+              className="btn btn-block"
+              type="button"
+              onClick={() => onCancel()}
+            >
+              Cancel
+            </button>
+            <div></div>
+            <button className="btn btn-block" type="submit">
+              Update Log
+            </button>
+          </div>
         </div>
       </form>
     </section>

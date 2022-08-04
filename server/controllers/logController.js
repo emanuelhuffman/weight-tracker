@@ -76,9 +76,15 @@ const updateLog = asyncHandler(async (req, res) => {
     throw new Error("User not authorized");
   }
 
-  const updatedLog = await Log.findByIdAndUpdate(req.params.id, req.body, {
-    new: true,
-  });
+  const newDate = req.body.date.replaceAll("-", "/");
+  const updatedLog = await Log.findByIdAndUpdate(
+    req.params.id,
+    {
+      date: newDate,
+      exercises: req.body.exercises,
+    },
+    { new: true }
+  );
 
   res.status(200).json(updatedLog);
 });

@@ -16,8 +16,8 @@ function LogItem({ log }) {
       <h2>{log.text}</h2>
       {log.exercises.map((exercise, index) => (
         <div key={index}>
-          {exercise.name} - {exercise.weight}lbs - {exercise.sets} sets -{" "}
-          {exercise.reps} reps
+          {exercise.name} - {exercise.weight}lbs - {exercise.sets}s -{" "}
+          {exercise.reps}r
         </div>
       ))}
       <button onClick={() => dispatch(deleteLog(log._id))} className="close">
