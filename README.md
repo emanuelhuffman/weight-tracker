@@ -6,6 +6,6 @@
 -React router  
 -Password hashing with bcrypt  
 -Toastify for better UI/UX  
--Custom Auth and error middlewear for route protection and security  
+-Custom Auth and error middleware for route protection and security  
 -Restful routing practices  
 -Postman for server side testing
